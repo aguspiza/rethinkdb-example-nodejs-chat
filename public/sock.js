@@ -36,5 +36,19 @@ document.getElementById('sendmessage').addEventListener('submit', function(e) {
 var makeChatRow = function(data) {
   var date = new Date(data.timestamp);
   var display = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
-  return '<div class="message">' + '<b>' + data.from + ': </b>' + data.message + '<span class="pull-right badge">' + display + '</span></div>';
+  var message = data.message;
+  if (data.message.includes('://')) {
+    var parts = data.message.split(" ");
+    message = ""
+    for(p in parts) {
+      if (parts[p].includes("://")) {
+        message += '<a href="' + parts[p] + '">' + parts[p] + '</a>';
+      } else {
+        message += parts[p]
+      }
+    }
+  } else {
+
+  }
+  return '<div class="message">' + '<b>' + data.from + ': </b>' + message + '<span class="pull-right badge">' + display + '</span></div>';
 }
