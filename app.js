@@ -20,7 +20,7 @@ var express = require('express')
 app.use(express.static('public'));
 app.use(cookieParser());
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(bodyParser.urlencoded({
   extended: true
